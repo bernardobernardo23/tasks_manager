@@ -35,13 +35,6 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
             padding: 20px;
         }
-
-        .botao_ordenar {
-            position: absolute;
-            right: 0%;
-            top: 15%;
-            padding: 10px;
-        }
     </style>
 </head>
 
@@ -96,7 +89,21 @@
                         <td><?= $task['id'] ?></td>
                         <td><?= esc($task['title']) ?></td>
                         <td><?= esc($task['description']) ?></td>
-                        <td><?= esc($task['status']) ?></td>
+
+                        <?php
+                        $status = $task['status'];
+                        $classe = '';
+
+                        if ($status == 'concluída') {
+                            $classe = 'bg-success text-white'; // verde com texto branco
+                        } elseif ($status == 'em andamento') {
+                            $classe = 'bg-warning text-dark'; // amarelo com texto escuro
+                        } elseif ($status == 'pendente') {
+                            $classe = 'bg-danger text-white'; // vermelho com texto branco
+                        }
+                        ?>
+                        <td class="<?= $classe ?>"><?= esc($status) ?></td>
+
                         <td><?= date('d/m/Y H:i', strtotime($task['created_at'])) ?></td>
                         <td><?= date('d/m/Y H:i', strtotime($task['updated_at'])) ?></td>
 
@@ -114,11 +121,9 @@
                                 <i class="bi bi-trash"></i>
                             </a>
                         </td>
-
                     </tr>
                 <?php endforeach; ?>
             </tbody>
-
         </table>
     </div>
 

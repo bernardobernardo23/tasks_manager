@@ -50,8 +50,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="descricao" class="form-label">Descrição</label>
-                <textarea name="descricao" id="descricao" class="form-control" required><?= old('description') ?></textarea>
+                <label for="description" class="form-label">Descrição</label>
+                <textarea name="description" id="description" class="form-control" required><?= old('description') ?></textarea>
             </div>
 
             <div class="mb-3">
