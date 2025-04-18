@@ -10,9 +10,9 @@ class TestDb extends Controller
     {
         try {
             $db = Database::connect();
-            echo "✅ Conexão com o banco de dados bem-sucedida!";
+            echo "conexao feita";
         } catch (\Throwable $e) {
-            echo "❌ Erro ao conectar com o banco: " . $e->getMessage();
+            echo "erro " . $e->getMessage();
         }
     }
 }

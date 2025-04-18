@@ -4,6 +4,6 @@
     <title>Hello</title>
 </head>
 <body>
-    <h1>Hello, CodeIgniter!SSSSSSSSSSSSSSS</h1>
+    <h1>Hello teste </h1>
 </body>
 </html>

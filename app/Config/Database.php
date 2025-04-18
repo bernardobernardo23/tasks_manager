@@ -26,22 +26,22 @@ class Database extends Config
      */
     public array $default = [
         'DSN'          => '',
-        'hostname'     => 'localhost',
-        'username'     => '',
-        'password'     => '',
-        'database'     => '',
-        'DBDriver'     => 'MySQLi',
+        'hostname'     => 'localhost',      // O nome do host
+        'username'     => 'root',           // O nome de usuário do banco de dados
+        'password'     => '',               
+        'database'     => 'tasks_db',       // O nome do banco de dados
+        'DBDriver'     => 'MySQLi',         // O driver para MySQL
         'DBPrefix'     => '',
         'pConnect'     => false,
         'DBDebug'      => true,
-        'charset'      => 'utf8mb4',
-        'DBCollat'     => 'utf8mb4_general_ci',
+        'charset'      => 'utf8mb4',        // Charset recomendado
+        'DBCollat'     => 'utf8mb4_general_ci',  // Collation recomendado
         'swapPre'      => '',
         'encrypt'      => false,
         'compress'     => false,
         'strictOn'     => false,
         'failover'     => [],
-        'port'         => 3306,
+        'port'         => 3306,             // Porta padrão para MySQL
         'numberNative' => false,
         'foundRows'    => false,
         'dateFormat'   => [
@@ -50,6 +50,7 @@ class Database extends Config
             'time'     => 'H:i:s',
         ],
     ];
+    
 
     //    /**
     //     * Sample database connection for SQLite3.
