@@ -50,7 +50,7 @@ cp env .env
 Depois, edite o arquivo .env e configure as informações do banco de dados ,caso não esteja:
 ```
 database.default.hostname = localhost
-database.default.database = tarefas
+database.default.database = tasks_db
 database.default.username = root
 database.default.password =
 ```
@@ -80,8 +80,32 @@ php spark serve
 ### 6.Acessando o sistema
 Ao rodar o servidor digite http://localhost:8080/tasks no navegador e acesse o sistema  
 
-## Uso da API
+## Como usar o Sistema
+Ao acessar a página principal, você encontrará algo como : 
+## Uso da API RESTful
 
+Este projeto oferece também uma **API RESTful** que permite consumir as funcionalidades do sistema de forma programática. A API segue os métodos HTTP padrões e pode ser testada facilmente com ferramentas como o **Postman** ou o **Hoppscotch**.
 
+Abaixo estão os endpoints disponíveis:
 
+- `GET /api/tasks` — Lista todas as tarefas
+- `GET /api/tasks/{id}` — Retorna os dados de uma tarefa específica
+- `POST /api/tasks` — Cria uma nova tarefa (envie os dados no corpo da requisição em JSON)
+- `PUT /api/tasks/{id}` — Atualiza os dados de uma tarefa existente
+- `DELETE /api/tasks/{id}` — Remove uma tarefa do banco de dados
 
+#### Exemplo prático : 
+`DELETE http://localhost:8080/api/tasks/10` -> removerá o elemento 10 do banco de dados
+#### Testando Post e Put
+
+Ao usar o Postman,após criar uma nova requisição HTTP, dentro da aba Body defina como 'raw' e defina o `Content-Type` como `application/json`.  
+Na parte de código JSON digite algo como esse:
+
+```
+{
+  "title": "Nova tarefa via API",
+  "description": "Criada pelo Postman",
+  "status": "pendente"
+}
+```
+Importante lembrar que qualquer valor diferente de "pendente","em andamento" e "concluída" no campo status farão com que a tarefa não seja enviada ao banco de dados
