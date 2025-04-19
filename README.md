@@ -1,68 +1,87 @@
-# CodeIgniter 4 Application Starter
+# Gerenciador de Tarefas
 
-## What is CodeIgniter?
+Este é um sistema simples de **gerenciamento de tarefas** desenvolvido com **PHP (CodeIgniter 4)**. Ele permite que usuários **cadastrem, editem, excluam e visualizem tarefas**, além de fornecer uma **API RESTful** completa
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Tecnologias Utilizadas e necessárias para a execução
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+- [**PHP 8+**](https://www.php.net/downloads.php)
+- [**Composer**](https://getcomposer.org/download/)
+- [**MySQL**](https://dev.mysql.com/downloads/mysql/)
+- [**XAMPP** (opcional, para unir PHP + Apache + MySQL em um só)](https://www.apachefriends.org/index.html)
+- [**Git** (para clonar o repositório)](https://git-scm.com/)
+- **HTML/CSS**
+- **Bootstrap**
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## Funcionalidades
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+-  Criar novas tarefas com título, descrição e status via sistema com banco de dados
+-  Ordenas tarefas de acordo com o status, para controle de tarefas pendentes, em andamento e concluída
+-  Editar uma tarefa existente
+-  Excluir tarefas
+-  API RESTful com os métodos:
+  - `GET`: Listar e buscar tarefas
+  - `POST`: Criar novas tarefas
+  - `PUT`: Atualizar tarefas
+  - `DELETE`: Remover tarefas
 
-## Installation & updates
+---
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+## Como executar localmente
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+### 1. Instale as dependências via Composer dentro do terminal
+```
+composer install
+```
 
-## Setup
+### 2. No terminal, Clone este repositório
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+```
+git clone https://github.com/bernardobernardo23/tasks_manager.git
+```
 
-## Important Change with index.php
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+### 3. Configure o ambiente (.env)
+Renomeie o arquivo env para .env:
 
-**Please** read the user guide for a better explanation of how CI4 works!
+```
+cp env .env
+```
+Depois, edite o arquivo .env e configure as informações do banco de dados ,caso não esteja:
+```
+database.default.hostname = localhost
+database.default.database = tarefas
+database.default.username = root
+database.default.password =
+```
+ Use root como usuário e senha em branco se estiver usando o XAMPP.
 
-## Repository Management
+### 4.Crie o Banco de dados
+Se estiver usando o XAMPP, abra e inicialize os servidores Apache e MySql, 
+após acesse o PhpMyAdmin -->http://localhost/phpmyadmin/
+- Crie um novo banco de dados com o nome tasks_db e digite o código SQL : 
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+```
+CREATE TABLE tasks (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  description TEXT,
+  status ENUM('pendente', 'em andamento', 'concluída') DEFAULT 'pendente',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+```
+### 5.Iniciando o servidor Codeigniter
+No terminal, vá até a pasta do projeto e inicialize o servidor
+```
+cd C:\xampp\htdocs\tasks_manager
+php spark serve
+```
+### 6.Acessando o sistema
+Ao rodar o servidor digite http://localhost:8080/tasks no navegador e acesse o sistema  
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+## Uso da API
 
-## Server Requirements
 
-PHP version 8.1 or higher is required, with the following extensions installed:
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
