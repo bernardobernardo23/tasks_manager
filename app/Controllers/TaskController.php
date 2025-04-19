@@ -15,18 +15,18 @@ class TaskController extends Controller
         $ordenar = $db->table('tasks');
 
         // ordem vinda da URL ou padrão
-        $orderParam = $this->request->getGet('order') ?? 'em andamento,pendente,concluída';
+        $orderParam = $this->request->getGet('order'); 
 
-        // //explode quebra a string e transforma em um array separado por virgulas
-        $orderArray = explode(',', $orderParam);
-        //implode - contrario de explode
-        $clausulaSQL = "FIELD(status, " . implode(',', array_map(
-            fn($s) => $db->escape($s), 
-            $orderArray)) . ")";
-
-        // aplica a ordenação
-        $ordenar->orderBy($clausulaSQL, 'ASC', false);
-
+        if ($orderParam) {
+            $orderArray = explode(',', $orderParam); //explode quebra a string e transforma em um array separado por virgulas
+            $clausulaSQL = "FIELD(status, " . implode(',', array_map( //implode - contrario de explode
+                fn($s) => $db->escape($s),
+                $orderArray
+            )) . ")";
+            $ordenar->orderBy($clausulaSQL, 'ASC', false); // aplica a ordenação
+        } else {
+            $ordenar->orderBy('id', 'ASC'); // se não existe, ordena pelo ID (ordem padrão)
+        }
         // busca os dados
         $data['tasks'] = $ordenar->get()->getResultArray();
         $data['order'] = $orderParam;
