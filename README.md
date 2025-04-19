@@ -33,19 +33,29 @@ O projeto foi desenvolvido seguindo o padrão **MVC (Model-View-Controller)**, u
 
 ## Como Executar Localmente
 
-### 1. Instale as dependências via Composer
-
-```bash
-composer install
-```
-
-### 2. Clone este repositório
+### 1. Clone este repositório
 
 ```
 git clone https://github.com/bernardobernardo23/tasks_manager.git
 ```
+### 2. Arrumar arquivo php.ini
+Abra o arquivo php.ini que esta dentro da pasta php  
+Pressione Ctrl + F e procure por:
+```
+;extension=intl
+```
+Remova o ponto e vírgula (;) para ativar:
+>Talvez seja necessário ativar a extensão zip dentro do arquivo php.ini, para arrumar pesquise por ";extension=zip" e tire o ;
 
-### 3. Configure o ambiente (.env)
+### 3. Instale as dependências via Composer
+Dentro da pasta do projeto :
+```
+composer install
+```
+
+
+
+### 4. Configure o ambiente (.env)
 
 Renomeie o arquivo `env` para `.env` (manualmente ou via terminal):
 
@@ -64,7 +74,7 @@ database.default.password =
 
 > Se estiver usando o XAMPP, mantenha o usuário como `root` e senha em branco.
 
-### 4. Crie o banco de dados
+### 5. Crie o banco de dados
 Se estiver usando XAMPP, abra e execute os servidores Apache e MySql para poder
 acessar o phpMyAdmin: [http://localhost/phpmyadmin](http://localhost/phpmyadmin)  
 Crie um banco chamado `tasks_db` e execute o SQL abaixo:
@@ -89,14 +99,14 @@ INSERT INTO tasks (title, description, status) VALUES
 ('Enviar relatório mensal', 'Relatório enviado via e-mail', 'concluída');
 ```
 
-### 5. Inicie o servidor local
+### 6. Inicie o servidor local
 No terminal, vá até a pasta do projeto e inicialize o servidor
 ```
 cd C:\xampp\htdocs\tasks_manager
 php spark serve
 ```
 
-### 6. Acesse no navegador
+### 7. Acesse no navegador
 
 ```
 http://localhost:8080/tasks
@@ -175,6 +185,9 @@ PUT http://localhost:8080/api/tasks/10
 ```
 
 ---
+
+
+
 
 ## Autor
 
