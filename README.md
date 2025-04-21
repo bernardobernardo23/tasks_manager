@@ -186,7 +186,14 @@ PUT http://localhost:8080/api/tasks/10
 
 ---
 
+## Material de apoio
 
+
+[StartDev Brasil]( https://www.youtube.com/watch?v=V-0zpxy9mdQ)
+[Lucas Genari](https://www.youtube.com/watch?v=CBxX-5RXHD0&list=PLgG1YagpzTzywXZs4tKPK5SGIX8VoNWFc)
+[Be Pratical]( https://www.youtube.com/watch?v=FKElo_SXHK0&list=PL5z_lBPYaajZCkgq3EzaiZu2wpO2r7Z27)
+
+---
 
 
 ## Autor
